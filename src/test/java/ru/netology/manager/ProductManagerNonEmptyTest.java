@@ -65,6 +65,14 @@ class ProductManagerNonEmptyTest {
     @Test
     void shouldSearchInProduct() {
         Product[] actual = manager.searchBy("teapot");
+        Product[] expected = new Product[]{fifth};
+        assertArrayEquals(expected, actual);
+    }
+
+
+    @Test
+    void shouldSearchNotInItems() {
+        Product[] actual = manager.searchBy("cup");
         Product[] expected = new Product[0];
         assertArrayEquals(expected, actual);
     }

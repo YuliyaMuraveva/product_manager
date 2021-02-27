@@ -11,6 +11,7 @@ class ProductManagerEmptyTest {
     private ProductRepository repository = new ProductRepository();
     private ProductManager manager = new ProductManager(repository);
     private Book first = new Book(1, "Head First Java", "Kathy Sierra");
+    private Product fifth = new Product(5, "teapot");
 
     @Test
     void shouldGetAll() {
@@ -31,6 +32,14 @@ class ProductManagerEmptyTest {
         manager.add(first);
         Product[] actual = manager.searchBy("Head First Java");
         Product[] expected = new Product[]{first};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldSearchByInOneItemInProduct() {
+        manager.add(fifth);
+        Product[] actual = manager.searchBy("teapot");
+        Product[] expected = new Product[]{fifth};
         assertArrayEquals(expected, actual);
     }
 }
